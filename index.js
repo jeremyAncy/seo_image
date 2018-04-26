@@ -52,8 +52,9 @@ async.parallel({
         let ch = results.rabbit;
 
         //TODO changer ce nom, et me dire le nom de votre micro service, et quand vous voulez recevoir une tache
-        let q = "nomDeVotreMicroService";
+        let q = "image";
         ch.assertQueue(q, {durable: false, maxPriority: 100});
+        console.log(q);
 
         //ici vous indiquez le nombre de taches en même temps au max
         ch.prefetch(10);
@@ -72,6 +73,7 @@ async.parallel({
             //////////////////////////////////
             //////////VOTRE CODE ICI//////////
             //////////////////////////////////
+            console.log(task);
 
             //cette commande pour dire que vous avez finis votre tache en cours (comme une callback)
             ch.ack(msg);
